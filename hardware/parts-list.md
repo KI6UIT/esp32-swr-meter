@@ -18,9 +18,9 @@ Reference designators match [schematic.svg](schematic.svg).
 | — | 1 | Enamelled copper (magnet) wire, 26 AWG | About 2 m. 24 turns on each core, plus leads | $5 (spool) |
 | — | 2 | Coax, **RG-142** (or RG-400), 5 cm each | Single-turn primaries through T1 and T2. PTFE dielectric doesn't melt when you solder it. RG-58 works if that's what you have | $5 |
 | J1, J2 | 2 | **SO-239** chassis socket, 4-hole flange | PTFE insulator, silver or gold centre pin. J1 from amp, J2 to antenna | $8 |
-| ATT1, ATT2 | 2 | **20 dB fixed attenuator, SMA, 50 Ω, ≥ 2 W**, DC–3 GHz or better | Protects the detectors and puts 100 W at about +2 dBm on the AD8307. See the DIY alternative below | $10 |
+| ATT1, ATT2 | 2 | **20 dB fixed attenuator, SMA male–female, 50 Ω, 2 W**, DC–6 GHz | Protects the detectors and puts 100 W at about +2 dBm on the AD8307. Each one dissipates only about 0.26 W at 150 W. The female end takes the pigtail and the male end screws straight onto the detector module. See the DIY alternative below | $10 |
 | — | 2 | RG-316 pigtail, SMA male to open end, about 10 cm | From the coupler ports (X, Y) to the attenuators | $6 |
-| — | 2 | SMA male–male adapter | Attenuator to detector module, if the module has an SMA female input | $4 |
+| — | 2 | SMA adapter (only if needed) | Not needed with male–female attenuators and SMA-female detector modules. If the module has an SMA male input, use female–female instead | — |
 | U1, U2 | 2 | **AD8307 RF power detector module** (1–500 MHz, about −75 to +16 dBm, SMA input) | Log detector, 25 mV/dB. Buy one whose listing says the input is 50 Ω terminated. Runs on 5 V, about 10 mA each | $20 |
 | J3 | 1 | **GX12 4-pin** aviation connector, panel socket | DC only: +5 V, GND, REF, FWD | $3 (pair) |
 | FB1–FB4 | 4 | Ferrite bead, mix 43, slip-on (e.g. FB-43-101) or SMD 600 Ω | One in series with each DC line at J3 | $2 |
