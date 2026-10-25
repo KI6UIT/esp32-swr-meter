@@ -23,8 +23,9 @@ Reference designators match [schematic.svg](schematic.svg).
 | — | 2 | SMA adapter (only if needed) | Not needed with male–female attenuators and SMA-female detector modules. If the module has an SMA male input, use female–female instead | — |
 | U1, U2 | 2 | **AD8307 RF power detector module** (1–500 MHz, about −75 to +16 dBm, SMA input) | Log detector, 25 mV/dB. Buy one whose listing says the input is 50 Ω terminated. Runs on 5 V, about 10 mA each | $20 |
 | J3 | 1 | **GX12 4-pin** aviation connector, panel socket | DC only: +5 V, GND, REF, FWD | $3 (pair) |
-| FB1–FB4 | 4 | Ferrite bead, mix 43, slip-on (e.g. FB-43-101) or SMD 600 Ω | One in series with each DC line at J3 | $2 |
-| C3–C10 | 8 | Ceramic capacitor, 1 nF + 100 nF, 50 V (4 of each) | Bypass each J3 line to chassis | $1 |
+| FB1–FB3 | 3 | Ferrite bead, mix 43, slip-on (e.g. FB-43-101) or SMD 600 Ω | One in series with J3 pins 1, 3 and 4 (+5 V, REF, FWD) | $2 |
+| C3–C5 | 3 | Ceramic capacitor, **1 nF (102), 50 V, C0G/NP0**, radial, 2.54 mm lead spacing | RF bypass, J3 pins 1, 3, 4 to chassis. Leads as short as possible | $1 |
+| C6–C8 | 3 | Ceramic capacitor, **100 nF (104), 50 V, X7R**, radial, 2.54 mm lead spacing | Lower-frequency bypass, in parallel with C3–C5 | $1 |
 | — | 1 | Die-cast aluminium box, **Hammond 1590BB** (119 × 94 × 34 mm) | Keep the RF inside metal | $15 |
 | — | 1 | Single-sided copper-clad board, about 100 × 60 mm | Ground plane for the coupler, solder-on "dead-bug" style | $3 |
 | — | — | Solder lugs, M3 hardware, standoffs, heat-shrink, nylon cable ties | Ground lugs at J1, J2 and J3; ties hold the toroids | — |
@@ -51,7 +52,7 @@ already calibrated to 20 dB.
 | U3 | 1 | **LilyGO T-Display** (ESP32, 1.14" ST7789 135 × 240) | You already have one. Shows FWD W, REF W, SWR and sends data over Wi-Fi | — |
 | U4 | 1 | **ADS1115** 16-bit I²C ADC module | Address 0x48 (ADDR to GND). Runs on 3.3 V from the T-Display. The ESP32's own ADC is too nonlinear for this, and its ADC2 pins don't work while Wi-Fi is on | $4 |
 | R1, R2 | 2 | 1 kΩ, ¼ W | RC filter in front of each ADC input | — |
-| C1, C2 | 2 | 100 nF ceramic | RC filter (1.6 kHz corner) and RF bypass | — |
+| C1, C2 | 2 | Ceramic capacitor, **100 nF (104), 50 V, X7R**, radial | RC filter (1.6 kHz corner) and RF bypass | — |
 | J4 | 1 | GX12 4-pin cable plug (mate of J3) | | (in J3 pair) |
 | — | 1 | 4-core shielded cable, 1–2 m | Ground the shield **at the RF head only** | $5 |
 | — | 1 | Small plastic or 3D-printed case for the T-Display | Screen window, USB-C opening | — |

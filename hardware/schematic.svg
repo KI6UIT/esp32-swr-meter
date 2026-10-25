@@ -156,8 +156,8 @@
 
   <!-- J3 filtering note -->
   <rect x="40" y="620" width="340" height="50" fill="#fff8e1" stroke="#c9a400"/>
-  <text x="50" y="640" class="small">Each J3 line (pins 1, 3, 4): ferrite bead FB in series,</text>
-  <text x="50" y="656" class="small">then 1 nF + 100 nF to chassis right at the connector.</text>
+  <text x="50" y="640" class="small">J3 pins 1, 3, 4: ferrite bead (FB1–FB3) in series,</text>
+  <text x="50" y="656" class="small">then 1 nF C0G (C3–C5) + 100 nF X7R (C6–C8) to chassis.</text>
 
   <!-- ===================== CABLE ===================== -->
   <line x1="1050" y1="370" x2="1130" y2="370" class="w"/>
