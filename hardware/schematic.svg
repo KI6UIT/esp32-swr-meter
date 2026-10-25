@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="960" viewBox="0 0 1640 960" font-family="DejaVu Sans, Arial, sans-serif" font-size="13">
+  <defs>
+    <g id="gnd">
+      <line x1="0" y1="0" x2="0" y2="8" stroke="#000" stroke-width="2"/>
+      <line x1="-10" y1="8" x2="10" y2="8" stroke="#000" stroke-width="2"/>
+      <line x1="-6" y1="12" x2="6" y2="12" stroke="#000" stroke-width="2"/>
+      <line x1="-2" y1="16" x2="2" y2="16" stroke="#000" stroke-width="2"/>
+    </g>
+  </defs>
+  <style>
+    .w { stroke: #000; stroke-width: 2; fill: none; }
+    .rf { stroke: #b00020; stroke-width: 3; fill: none; }
+    .box { stroke: #000; stroke-width: 2; fill: #f4f6fb; }
+    .encl { stroke: #555; stroke-width: 1.5; stroke-dasharray: 8 5; fill: none; }
+    .core { stroke: #000; stroke-width: 2; }
+    .lbl { font-weight: bold; }
+    .small { font-size: 11px; fill: #333; }
+    .net { font-size: 12px; font-weight: bold; fill: #0b5394; }
+    .title { font-size: 22px; font-weight: bold; }
+    .dot { fill: #000; }
+  </style>
+
+  <rect x="0" y="0" width="1640" height="960" fill="#fff"/>
+
+  <text x="30" y="38" class="title">ESP32 inline SWR / power meter — schematic (rev A)</text>
+  <text x="30" y="60" class="small">Stockton tandem-match coupler · 1.8–54 MHz · 150 W max · KI6UIT · github.com/KI6UIT/esp32-swr-meter</text>
+
+  <!-- ===================== RF HEAD ===================== -->
+  <rect x="20" y="80" width="1010" height="610" class="encl"/>
+  <text x="34" y="100" class="lbl">RF HEAD — die-cast box (Hammond 1590BB); all grounds to chassis</text>
+
+  <!-- J1 -->
+  <circle cx="70" cy="160" r="13" class="w"/>
+  <circle cx="70" cy="160" r="3" class="dot"/>
+  <line x1="70" y1="173" x2="70" y2="190" class="w"/>
+  <use href="#gnd" x="70" y="190"/>
+  <text x="38" y="230" class="lbl">J1 SO-239</text>
+  <text x="38" y="246" class="small">from XPA125B</text>
+  <text x="38" y="260" class="small">(amp output)</text>
+
+  <!-- main line -->
+  <line x1="83" y1="160" x2="250" y2="160" class="rf"/>
+  <path d="M250,160 a20,20 0 0 0 40,0" class="rf"/>
+  <line x1="290" y1="160" x2="947" y2="160" class="rf"/>
+  <text x="380" y="150" class="small" fill="#b00020">main line: centre conductor of RG-142 through T1</text>
+
+  <!-- J2 -->
+  <circle cx="960" cy="160" r="13" class="w"/>
+  <circle cx="960" cy="160" r="3" class="dot"/>
+  <line x1="960" y1="173" x2="960" y2="190" class="w"/>
+  <use href="#gnd" x="960" y="190"/>
+  <text x="900" y="230" class="lbl">J2 SO-239</text>
+  <text x="900" y="246" class="small">to EFHW</text>
+
+  <!-- T1: 1 t primary (main line) / 24 t secondary -->
+  <line x1="236" y1="190" x2="306" y2="190" class="core"/>
+  <line x1="236" y1="195" x2="306" y2="195" class="core"/>
+  <path d="M230,215 a10,10 0 0 1 20,0 a10,10 0 0 1 20,0 a10,10 0 0 1 20,0 a10,10 0 0 1 20,0" class="w"/>
+  <circle cx="244" cy="174" r="3.5" class="dot"/>
+  <circle cx="226" cy="204" r="3.5" class="dot"/>
+  <line x1="230" y1="215" x2="200" y2="215" class="w"/>
+  <line x1="200" y1="215" x2="200" y2="240" class="w"/>
+  <use href="#gnd" x="200" y="240"/>
+  <line x1="310" y1="215" x2="530" y2="215" class="w"/>
+  <text x="225" y="290" class="lbl">T1  FT82-43</text>
+  <text x="225" y="306" class="small">1 t (line) : 24 t</text>
+  <text x="225" y="320" class="small">current sample</text>
+
+  <!-- T2: 24 t primary across line / 1 t secondary in series X–Y -->
+  <circle cx="580" cy="160" r="4" class="dot"/>
+  <line x1="580" y1="160" x2="580" y2="215" class="w"/>
+  <path d="M580,215 a10,10 0 0 0 0,20 a10,10 0 0 0 0,20 a10,10 0 0 0 0,20 a10,10 0 0 0 0,20" class="w"/>
+  <line x1="580" y1="295" x2="580" y2="320" class="w"/>
+  <use href="#gnd" x="580" y="320"/>
+  <line x1="556" y1="210" x2="556" y2="300" class="core"/>
+  <line x1="561" y1="210" x2="561" y2="300" class="core"/>
+  <line x1="530" y1="215" x2="530" y2="235" class="w"/>
+  <path d="M530,235 a20,20 0 0 1 0,40" class="w"/>
+  <line x1="530" y1="275" x2="530" y2="440" class="w"/>
+  <circle cx="592" cy="210" r="3.5" class="dot"/>
+  <circle cx="519" cy="232" r="3.5" class="dot"/>
+  <text x="600" y="250" class="lbl">T2  FT82-43</text>
+  <text x="600" y="266" class="small">24 t (across line) : 1 t</text>
+  <text x="600" y="280" class="small">voltage sample</text>
+
+  <!-- port nodes -->
+  <circle cx="420" cy="215" r="4" class="dot"/>
+  <text x="372" y="208" class="lbl">port X</text>
+  <text x="474" y="300" class="lbl">port Y</text>
+  <line x1="420" y1="215" x2="420" y2="590" class="w"/>
+
+  <text x="40" y="380" class="small">X: sum of current + voltage samples → FORWARD</text>
+  <text x="40" y="395" class="small">Y: difference → REFLECTED</text>
+  <text x="40" y="410" class="small">(swap if bench test shows them reversed)</text>
+
+  <!-- pigtails -->
+  <line x1="530" y1="440" x2="630" y2="440" class="w"/>
+  <line x1="420" y1="590" x2="630" y2="590" class="w"/>
+  <text x="545" y="433" class="small">RG-316/SMA</text>
+  <text x="440" y="583" class="small">RG-316/SMA</text>
+
+  <!-- ATT2 (REF) -->
+  <rect x="630" y="415" width="110" height="50" class="box"/>
+  <text x="648" y="437" class="lbl">ATT2</text>
+  <text x="648" y="454" class="small">20 dB, 50 Ω, 2 W</text>
+  <line x1="740" y1="440" x2="790" y2="440" class="w"/>
+
+  <!-- ATT1 (FWD) -->
+  <rect x="630" y="565" width="110" height="50" class="box"/>
+  <text x="648" y="587" class="lbl">ATT1</text>
+  <text x="648" y="604" class="small">20 dB, 50 Ω, 2 W</text>
+  <line x1="740" y1="590" x2="790" y2="590" class="w"/>
+
+  <!-- U2 AD8307 (REF) -->
+  <rect x="790" y="405" width="140" height="70" class="box"/>
+  <text x="800" y="427" class="lbl">U2 AD8307</text>
+  <text x="800" y="443" class="small">log detector module</text>
+  <text x="800" y="457" class="small">REF · 25 mV/dB</text>
+  <text x="795" y="470" class="small">RF in</text>
+  <text x="895" y="470" class="small">out</text>
+  <line x1="860" y1="405" x2="860" y2="385" class="w"/>
+  <text x="845" y="380" class="net">+5V</text>
+  <line x1="860" y1="475" x2="860" y2="490" class="w"/>
+  <use href="#gnd" x="860" y="490"/>
+
+  <!-- U1 AD8307 (FWD) -->
+  <rect x="790" y="555" width="140" height="70" class="box"/>
+  <text x="800" y="577" class="lbl">U1 AD8307</text>
+  <text x="800" y="593" class="small">log detector module</text>
+  <text x="800" y="607" class="small">FWD · 25 mV/dB</text>
+  <text x="795" y="620" class="small">RF in</text>
+  <text x="895" y="620" class="small">out</text>
+  <line x1="860" y1="555" x2="860" y2="530" class="w"/>
+  <text x="845" y="526" class="net">+5V</text>
+  <line x1="860" y1="625" x2="860" y2="640" class="w"/>
+  <use href="#gnd" x="860" y="640"/>
+
+  <!-- outputs to J3 -->
+  <line x1="930" y1="440" x2="1010" y2="440" class="w"/>
+  <line x1="930" y1="590" x2="1010" y2="590" class="w"/>
+  <text x="945" y="433" class="net">REF</text>
+  <text x="945" y="583" class="net">FWD</text>
+
+  <!-- J3 -->
+  <rect x="1010" y="340" width="40" height="280" class="box"/>
+  <text x="972" y="332" class="lbl">J3 GX12</text>
+  <text x="1016" y="374" class="small">1</text>
+  <text x="1016" y="409" class="small">2</text>
+  <text x="1016" y="444" class="small">3</text>
+  <text x="1016" y="594" class="small">4</text>
+  <line x1="1010" y1="370" x2="985" y2="370" class="w"/>
+  <text x="950" y="375" class="net">+5V</text>
+  <line x1="1010" y1="405" x2="990" y2="405" class="w"/>
+  <line x1="990" y1="405" x2="990" y2="410" class="w"/>
+  <use href="#gnd" x="990" y="410"/>
+
+  <!-- J3 filtering note -->
+  <rect x="40" y="620" width="340" height="50" fill="#fff8e1" stroke="#c9a400"/>
+  <text x="50" y="640" class="small">Each J3 line (pins 1, 3, 4): ferrite bead FB in series,</text>
+  <text x="50" y="656" class="small">then 1 nF + 100 nF to chassis right at the connector.</text>
+
+  <!-- ===================== CABLE ===================== -->
+  <line x1="1050" y1="370" x2="1130" y2="370" class="w"/>
+  <line x1="1050" y1="405" x2="1130" y2="405" class="w"/>
+  <line x1="1050" y1="440" x2="1130" y2="440" class="w"/>
+  <line x1="1050" y1="590" x2="1130" y2="590" class="w"/>
+  <rect x="1065" y="355" width="50" height="250" rx="18" fill="none" stroke="#777" stroke-dasharray="4 3"/>
+  <text x="1072" y="622" class="small">cable</text>
+
+  <!-- ===================== DISPLAY UNIT ===================== -->
+  <rect x="1110" y="280" width="515" height="510" class="encl"/>
+  <text x="1170" y="300" class="lbl">DISPLAY UNIT — plastic case</text>
+
+  <!-- J4 -->
+  <rect x="1130" y="340" width="40" height="280" class="box"/>
+  <text x="1124" y="332" class="lbl">J4</text>
+  <text x="1158" y="374" class="small">1</text>
+  <text x="1158" y="409" class="small">2</text>
+  <text x="1158" y="444" class="small">3</text>
+  <text x="1158" y="594" class="small">4</text>
+  <line x1="1170" y1="370" x2="1195" y2="370" class="w"/>
+  <text x="1198" y="375" class="net">+5V</text>
+  <line x1="1170" y1="405" x2="1190" y2="405" class="w"/>
+  <line x1="1190" y1="405" x2="1190" y2="410" class="w"/>
+  <use href="#gnd" x="1190" y="410"/>
+
+  <!-- R2/C2 (REF) -->
+  <line x1="1170" y1="440" x2="1190" y2="440" class="w"/>
+  <rect x="1190" y="432" width="40" height="16" fill="#fff" stroke="#000" stroke-width="2"/>
+  <text x="1192" y="464" class="small">R2 1k</text>
+  <line x1="1230" y1="440" x2="1320" y2="440" class="w"/>
+  <circle cx="1260" cy="440" r="4" class="dot"/>
+  <line x1="1260" y1="440" x2="1260" y2="458" class="w"/>
+  <line x1="1248" y1="458" x2="1272" y2="458" class="w"/>
+  <line x1="1248" y1="465" x2="1272" y2="465" class="w"/>
+  <line x1="1260" y1="465" x2="1260" y2="478" class="w"/>
+  <use href="#gnd" x="1260" y="478"/>
+  <text x="1270" y="473" class="small">C2 100n</text>
+
+  <!-- R1/C1 (FWD) -->
+  <line x1="1170" y1="590" x2="1190" y2="590" class="w"/>
+  <rect x="1190" y="582" width="40" height="16" fill="#fff" stroke="#000" stroke-width="2"/>
+  <text x="1192" y="614" class="small">R1 1k</text>
+  <line x1="1230" y1="590" x2="1320" y2="590" class="w"/>
+  <circle cx="1260" cy="590" r="4" class="dot"/>
+  <line x1="1260" y1="590" x2="1260" y2="608" class="w"/>
+  <line x1="1248" y1="608" x2="1272" y2="608" class="w"/>
+  <line x1="1248" y1="615" x2="1272" y2="615" class="w"/>
+  <line x1="1260" y1="615" x2="1260" y2="628" class="w"/>
+  <use href="#gnd" x="1260" y="628"/>
+  <text x="1270" y="623" class="small">C1 100n</text>
+
+  <!-- U4 ADS1115 -->
+  <rect x="1320" y="380" width="110" height="260" class="box"/>
+  <text x="1330" y="400" class="lbl">U4</text>
+  <text x="1330" y="416" class="lbl">ADS1115</text>
+  <text x="1330" y="430" class="small">addr 0x48</text>
+  <text x="1326" y="444" class="small">A1</text>
+  <text x="1326" y="594" class="small">A0</text>
+  <text x="1326" y="494" class="small">A2 nc</text>
+  <text x="1326" y="514" class="small">A3 nc</text>
+  <text x="1390" y="474" class="small">VDD</text>
+  <text x="1390" y="504" class="small">GND</text>
+  <text x="1392" y="534" class="small">SCL</text>
+  <text x="1392" y="564" class="small">SDA</text>
+  <text x="1384" y="594" class="small">ADDR</text>
+  <text x="1378" y="626" class="small">ALRT nc</text>
+
+  <!-- ADS to T-Display -->
+  <line x1="1430" y1="470" x2="1490" y2="470" class="w"/>
+  <line x1="1430" y1="500" x2="1490" y2="500" class="w"/>
+  <line x1="1430" y1="530" x2="1490" y2="530" class="w"/>
+  <line x1="1430" y1="560" x2="1490" y2="560" class="w"/>
+  <line x1="1430" y1="590" x2="1450" y2="590" class="w"/>
+  <line x1="1450" y1="590" x2="1450" y2="600" class="w"/>
+  <use href="#gnd" x="1450" y="600"/>
+  <text x="1445" y="464" class="net">3V3</text>
+  <text x="1445" y="524" class="small">I²C</text>
+
+  <!-- U3 T-Display -->
+  <rect x="1490" y="400" width="120" height="210" class="box"/>
+  <text x="1498" y="420" class="lbl">U3 LilyGO</text>
+  <text x="1498" y="436" class="lbl">T-Display</text>
+  <text x="1498" y="452" class="small">ESP32</text>
+  <text x="1496" y="474" class="small">3V3</text>
+  <text x="1496" y="504" class="small">GND</text>
+  <text x="1496" y="534" class="small">IO22 SCL</text>
+  <text x="1496" y="564" class="small">IO21 SDA</text>
+  <line x1="1580" y1="400" x2="1580" y2="370" class="w"/>
+  <text x="1565" y="364" class="net">+5V</text>
+  <text x="1520" y="392" class="small">5V pin</text>
+  <rect x="1515" y="580" width="78" height="22" fill="#e8f5e9" stroke="#2e7d32"/>
+  <text x="1521" y="596" class="small">USB-C 5 V in</text>
+  <text x="1490" y="635" class="small">Wi-Fi → UDP JSON</text>
+  <text x="1490" y="650" class="small">→ station-monitor</text>
+  <text x="1490" y="665" class="small">(also on its screen)</text>
+
+  <!-- display unit power note -->
+  <text x="1130" y="700" class="small">+5V comes from the T-Display's 5V pin (USB VBUS) and feeds the</text>
+  <text x="1130" y="715" class="small">two AD8307s through the cable. ADS1115 runs on 3V3, so its inputs</text>
+  <text x="1130" y="730" class="small">stay safe: AD8307 output tops out about 2.5 V.</text>
+  <text x="1130" y="750" class="small">Clip-on ferrite (mix 31) on the USB-C cable.</text>
+
+  <!-- ===================== NOTES ===================== -->
+  <text x="30" y="740" class="lbl">Build notes</text>
+  <text x="30" y="762" class="small">1. T1 and T2: 24 turns of 26 AWG on FT82-43, spread evenly. Coupling = 20·log(24) = −27.6 dB → 100 W gives +22.4 dBm at a port, +2.4 dBm at the detector.</text>
+  <text x="30" y="780" class="small">2. Each single turn is a 5 cm piece of RG-142 through the core: T1's centre conductor is the main line; T2's centre conductor joins port X to port Y.</text>
+  <text x="44" y="798" class="small">Ground each piece's shield at ONE end only (it is an electrostatic screen, not a conductor). Keep the two transformers about 3 cm apart or put a copper wall between them.</text>
+  <text x="30" y="816" class="small">3. T2's 24-turn winding goes from the main line to ground; mount it near J2. The ATT inputs (50 Ω) are the port terminations: never run the coupler with a port open.</text>
+  <text x="30" y="834" class="small">4. Dots mark winding phase. If REF reads high into a dummy load, reverse T1's secondary leads (or set the swap option in firmware).</text>
+  <text x="30" y="852" class="small">5. Only DC leaves the RF head. Bypass every J3 pin. Cable: 4-core shielded, 1–2 m, shield connected to the RF head chassis only.</text>
+  <text x="30" y="878" class="lbl">J3 / J4 pinout:</text>
+  <text x="150" y="878" class="small">1 = +5 V  ·  2 = GND  ·  3 = REF (U2 out → ADS1115 A1)  ·  4 = FWD (U1 out → ADS1115 A0)</text>
+  <text x="30" y="904" class="small">SWR = (1 + √(P_ref / P_fwd)) / (1 − √(P_ref / P_fwd)), computed only when P_fwd &gt; 2 W. Power in dBm = V_out / 0.025 − 84 (nominal; calibrated per band).</text>
+</svg>
